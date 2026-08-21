@@ -1,0 +1,1152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My E-Commerce / Personal Site</title>
+  <style>
+    :root{
+      --bg:#0f172a;
+      --card:#ffffff;
+      --accent:#0d6efd;
+      --muted:#6b7280;
+      --gap:16px;
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;}
+    body{
+      font-family:Inter, system-ui, Arial;
+      margin:0;
+      color:#111;
+      background:
+        radial-gradient(circle at top left, #1d4ed8, transparent 55%),
+        radial-gradient(circle at bottom right, #f97316, transparent 55%),
+        var(--bg);
+    }
+
+    /* Top bar with search + nav */
+    .topbar{
+      position:sticky; top:0; z-index:40;
+      background:rgba(15,23,42,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(148,163,184,0.4);
+    }
+    .topbar-inner{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:10px 12px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo{
+      font-weight:700;
+      letter-spacing:0.4px;
+      color:#e5f0ff;
+      white-space:nowrap;
+    }
+
+    .search-wrap{flex:1;}
+    .search-wrap form{display:flex}
+    .search-wrap input[type="search"]{
+      flex:1;
+      padding:8px 10px;
+      border:1px solid #1f2937;
+      border-radius:8px 0 0 8px;
+      outline:none;
+      background:#020617;
+      color:#e5e7eb;
+    }
+    .search-wrap button{
+      padding:8px 12px;
+      border:none;
+      background:var(--accent);
+      color:white;
+      border-radius:0 8px 8px 0;
+      cursor:pointer;
+      font-size:14px;
+    }
+
+    /* Nav links */
+    .nav-links{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-size:14px;
+    }
+    .nav-links a{
+      text-decoration:none;
+      color:#cbd5f5;
+      padding:6px 10px;
+      border-radius:999px;
+      transition:background 0.15s, color 0.15s;
+      cursor:pointer;
+    }
+    .nav-links a:hover{
+      background:rgba(148,163,184,0.3);
+      color:#fff;
+    }
+    .nav-links a.active{
+      background:#0d6efd;
+      color:#fff;
+    }
+
+    .nav-toggle{
+      display:none;
+      border:none;
+      background:transparent;
+      font-size:22px;
+      cursor:pointer;
+      margin-left:auto;
+      color:#e5e7eb;
+    }
+
+    /* Main layout */
+    .container{
+      max-width:var(--max-width);
+      margin:24px auto;
+      padding:0 12px 24px;
+      display:grid;
+      grid-template-columns: 300px 1fr;
+      gap:var(--gap);
+      align-items:start;
+    }
+
+    /* Left sidebar */
+    .sidebar{
+      background:rgba(15,23,42,0.96);
+      padding:16px;
+      border-radius:16px;
+      box-shadow:0 10px 35px rgba(15,23,42,0.6);
+      color:#e5e7eb;
+      border:1px solid rgba(148,163,184,0.4);
+    }
+    .sidebar h3{margin:6px 0 12px; font-size:16px}
+    .field{margin-bottom:10px}
+    .field label{
+      display:block;
+      font-size:13px;
+      color:#9ca3af;
+      margin-bottom:6px;
+    }
+    .field input[type="text"],
+    .field input[type="email"],
+    .field textarea{
+      width:100%;
+      padding:8px 10px;
+      border-radius:8px;
+      border:1px solid #1f2937;
+      background:#020617;
+      color:#e5e7eb;
+    }
+    .uploads{display:grid; gap:8px}
+    .upload-row{display:flex; gap:8px; align-items:center}
+    .upload-row input[type="file"]{
+      font-size:12px;
+      color:#e5e7eb;
+    }
+
+    /* Right main */
+    .main{
+      display:flex;
+      flex-direction:column;
+      gap:var(--gap);
+    }
+    .card-shell{
+      background:#f9fafb;
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 8px 30px rgba(15,23,42,0.25);
+      border:1px solid rgba(148,163,184,0.6);
+    }
+    .cards-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+      gap:12px;
+    }
+    .card{
+      background:var(--card);
+      padding:12px;
+      border-radius:12px;
+      min-height:120px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      border:1px solid rgba(148,163,184,0.35);
+    }
+    .card img{
+      width:100%;
+      height:120px;
+      object-fit:cover;
+      border-radius:8px;
+    }
+    .card .title{font-weight:600; font-size:14px;}
+    .card .muted{font-size:13px; color:var(--muted)}
+
+    /* Pages */
+    .page{display:none;}
+    .page.active{display:block;}
+
+    .muted-note{font-size:13px; color:#6b7280;}
+
+    /* Folder style for main My Items header */
+    .folder-header{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+    }
+    .folder-icon{
+      width:32px;
+      height:28px;
+      border-radius:6px;
+      background:linear-gradient(135deg,#fde68a,#fbbf24);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+    }
+    .folder-title{font-weight:600;}
+
+    /* Side-by-side inner folders */
+    .folders-row{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:12px;
+      margin-top:10px;
+    }
+    @media (max-width:900px){
+      .folders-row{
+        grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      }
+    }
+    .folder-section{
+      background:#ffffff;
+      border-radius:12px;
+      padding:10px;
+      border:1px solid rgba(148,163,184,0.35);
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-height:150px;
+    }
+    .folder-section-header{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:14px;
+      font-weight:600;
+    }
+    .folder-section-icon{
+      width:26px;
+      height:26px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:16px;
+      background:#eef2ff;
+    }
+    .folder-section-body{
+      flex:1;
+      /* wrapper around grids */
+    }
+
+    /* SCROLL on each folder grid */
+    #photosGrid,
+    #pdfGrid,
+    #extraGrid{
+      max-height:220px;
+      overflow-y:auto;
+      padding-right:4px;
+    }
+
+    /* Notes UI */
+    .notes-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:14px;
+      margin-bottom:8px;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .note-type-select{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:13px;
+    }
+    .note-type-select label{
+      color:var(--muted);
+    }
+    .note-type-select select{
+      padding:4px 8px;
+      border-radius:8px;
+      border:1px solid #d1d5db;
+      font-size:13px;
+      background:#fff;
+    }
+    .note-add-btn{
+      border:none;
+      background:#0d6efd;
+      color:#fff;
+      border-radius:999px;
+      width:30px;
+      height:30px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:20px;
+      cursor:pointer;
+    }
+    .note-add-btn:hover{
+      opacity:0.9;
+    }
+    .note-card{
+      background:#ffffff;
+      border-radius:10px;
+      padding:10px;
+      border:1px solid #e5e7eb;
+      margin-bottom:8px;
+    }
+    .note-title{
+      font-weight:600;
+      margin-bottom:4px;
+      font-size:14px;
+    }
+    .note-body{
+      font-size:13px;
+      white-space:pre-wrap;
+      margin-bottom:4px;
+    }
+    .note-meta{
+      font-size:11px;
+    }
+
+    /* Footer */
+    footer{margin-top:18px}
+    .footer-inner{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:18px 12px 0;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      color:#e5e7eb;
+    }
+    .social a{
+      text-decoration:none;
+      margin-right:10px;
+      font-weight:600;
+      color:#cbd5f5;
+      font-size:13px;
+    }
+
+    /* Small screens tweaks */
+    @media (max-width:900px){
+      .container{grid-template-columns: 1fr;}
+      .topbar-inner{
+        padding:10px;
+        gap:8px;
+      }
+      .search-wrap{
+        flex-basis:100%;
+        order:3;
+      }
+    }
+
+    @media (max-width:700px){
+      .search-wrap{
+        display:none;
+      }
+      .nav-toggle{
+        display:block;
+      }
+      .nav-links{
+        position:absolute;
+        right:12px;
+        top:52px;
+        background:#020617;
+        flex-direction:column;
+        padding:10px;
+        border-radius:12px;
+        box-shadow:0 10px 30px rgba(15,23,42,0.7);
+        display:none;
+      }
+      .nav-links.open{
+        display:flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="logo">MyStore</div>
+
+      <div class="search-wrap">
+        <form id="searchForm" onsubmit="return doSearch(event)">
+          <input type="search" id="searchInput" placeholder="Search products, photos, documents..." aria-label="Search">
+          <button type="submit">Search</button>
+        </form>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+
+      <!-- Nav -->
+      <nav class="nav-links" id="navLinks">
+        <a data-page="home" class="active">Home</a>
+        <a data-page="note">My Note</a>
+        <a data-page="items">My Items</a>
+        <a data-page="services">Services</a>
+        <a data-page="contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h3>Personal info</h3>
+      <form id="personalForm" onsubmit="return savePersonal(event)">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input id="name" type="text" placeholder="Your name">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="bio">Short bio</label>
+          <textarea id="bio" rows="3" placeholder="Write a short bio"></textarea>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center; margin-top:6px; flex-wrap:wrap">
+          <button class="btn" type="submit">Save</button>
+          <button class="btn" type="button" onclick="loadSample()">Fill sample</button>
+          <!-- Small icon to set password -->
+          <button class="icon-btn" type="button" onclick="setPassword()" title="Set password">🔒</button>
+          <!-- Forgot password -->
+          <button class="btn" type="button"
+                  onclick="forgetPassword()"
+                  style="padding:6px 8px; font-size:12px;">
+            Forgot password
+          </button>
+        </div>
+      </form>
+
+      <hr style="margin:12px 0;border:none;border-top:1px solid #1f2937">
+
+      <h3>Upload</h3>
+      <div class="uploads" id="uploads">
+        <div class="upload-row">
+          <input type="file" id="photoInput" accept="image/*" onchange="handleImage(event)">
+        </div>
+        <div class="upload-row">
+          <input type="file" id="docInput" accept=".pdf,.doc,.docx,.txt" onchange="handleDoc(event)">
+        </div>
+        <p class="muted-note" style="margin-top:6px;">
+          All uploaded files are stored in the <strong>My Items</strong> hidden folder only.
+        </p>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <section class="main">
+      <!-- HOME PAGE -->
+      <div id="page-home" class="page active">
+        <div class="card-shell">
+          <h2 style="margin-top:0;">Welcome</h2>
+          <p class="muted-note">
+            This is your personal mini e-commerce / storage site.
+            Use the left side to fill your personal info and upload files.
+            Use the top menu to switch between <strong>My Note</strong>, <strong>My Items</strong>, <strong>Services</strong>, and <strong>Contact</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- MY NOTE PAGE -->
+      <div id="page-note" class="page">
+        <div class="card-shell">
+          <h3 style="margin-top:0;">My Note</h3>
+          <p class="muted-note">
+            Use <strong>Daily use notes</strong> for normal things, and
+            <strong>Personal notes</strong> for private things (they are locked with password when viewing).
+          </p>
+
+          <div class="notes-header">
+            <div class="note-type-select">
+              <label for="noteTypeSelect">Note type:</label>
+              <select id="noteTypeSelect">
+                <option value="daily">Daily use note</option>
+                <option value="personal">Personal note (locked)</option>
+              </select>
+            </div>
+            <button class="note-add-btn" type="button" onclick="addNewNote()" title="Add new note">+</button>
+          </div>
+
+          <div id="notesList" class="muted-note">
+            No daily notes yet. Click + to add one.
+          </div>
+        </div>
+      </div>
+
+      <!-- MY ITEMS PAGE -->
+      <div id="page-items" class="page">
+        <div class="card-shell">
+          <div class="folder-header" onclick="toggleItemsFolder()">
+            <div class="folder-icon">📁</div>
+            <div>
+              <div class="folder-title">My Items Folder</div>
+              <div class="muted-note">Click to open/close after unlocking.</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <button class="btn" type="button" onclick="unlockItems()" id="unlockItemsBtn">🔒 Unlock items</button>
+          </div>
+
+          <div id="itemsFolderContent" style="display:none; margin-top:12px;">
+            <p class="muted-note">Your uploaded files are organised into folders below.</p>
+
+            <div class="folders-row">
+              <!-- Photos folder -->
+              <div class="folder-section">
+                <div class="folder-section-header">
+                  <div class="folder-section-icon">📷</div>
+                  <span>Photos folder</span>
+                </div>
+                <div class="folder-section-body">
+                  <div class="cards-grid" id="photosGrid"></div>
+                </div>
+              </div>
+
+              <!-- PDF folder -->
+              <div class="folder-section">
+                <div class="folder-section-header">
+                  <div class="folder-section-icon">📄</div>
+                  <span>PDF folder</span>
+                </div>
+                <div class="folder-section-body">
+                  <div class="cards-grid" id="pdfGrid"></div>
+                </div>
+              </div>
+
+              <!-- Extra folder -->
+              <div class="folder-section">
+                <div class="folder-section-header">
+                  <div class="folder-section-icon">🗂</div>
+                  <span>Extra folder</span>
+                </div>
+                <div class="folder-section-body">
+                  <div class="cards-grid" id="extraGrid"></div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:12px">
+              <button class="btn" type="button" onclick="addSampleCards()">Add sample cards</button>
+              <button class="btn" type="button" onclick="clearAll()">Clear all</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERVICES PAGE -->
+      <div id="page-services" class="page">
+        <div class="card-shell">
+          <h3 style="margin-top:0;">Services</h3>
+          <p class="muted-note">
+            Describe your services here: portfolio, resume, project links, anything you offer.
+          </p>
+        </div>
+      </div>
+
+      <!-- CONTACT PAGE -->
+      <div id="page-contact" class="page">
+        <div class="card-shell">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3 style="margin-top:0;">Contact form</h3>
+            <button class="icon-btn" type="button" onclick="clearContactForm()" title="Clear form">✖</button>
+          </div>
+
+          <p class="muted-note">Save contact details safely in this browser (name, phone, message).</p>
+
+          <form id="contactForm" onsubmit="return saveContact(event)">
+            <div class="field">
+              <label for="contactName">Name</label>
+              <input id="contactName" type="text" placeholder="Your name">
+            </div>
+            <div class="field">
+              <label for="contactPhone">Phone number</label>
+              <input id="contactPhone" type="text" placeholder="Your phone number">
+            </div>
+            <div class="field">
+              <label for="contactMsg">Message / Note</label>
+              <textarea id="contactMsg" rows="3" placeholder="Write something..."></textarea>
+            </div>
+            <button class="btn btn-light" type="submit">Save contact</button>
+          </form>
+
+          <h4 style="margin-top:16px; font-size:15px;">Saved contacts (locked)</h4>
+          <button class="btn" type="button" onclick="unlockContacts()" id="unlockBtn">🔒 Unlock contacts</button>
+          <button class="btn" type="button" onclick="clearAllContacts()" style="margin-left:6px;">Clear all contacts</button>
+
+          <div id="contactList" class="muted-note" style="margin-top:8px; display:none;">
+            No contacts saved yet.
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="footer-inner">
+          <div>© 2025 MyStore</div>
+          <div class="social">
+            <a href="https://facebook.com/" target="_blank">Facebook</a>
+            <a href="https://wa.me/" target="_blank">WhatsApp</a>
+            <a href="https://twitter.com/" target="_blank">Twitter</a>
+            <a href="https://instagram.com/" target="_blank">Instagram</a>
+          </div>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    const PASSWORD_KEY          = 'site_password';
+    const PASSWORD_SET_ONCE_KEY = 'site_password_set_once';
+    const CONTACTS_KEY          = 'contacts_secure';
+    const ITEMS_KEY             = 'cards';
+    const DAILY_NOTES_KEY       = 'notes_daily';
+    const PERSONAL_NOTES_KEY    = 'notes_personal';
+
+    const photosGrid = document.getElementById('photosGrid');
+    const pdfGrid    = document.getElementById('pdfGrid');
+    const extraGrid  = document.getElementById('extraGrid');
+
+    function getPassword(){
+      const setOnce = localStorage.getItem(PASSWORD_SET_ONCE_KEY) === 'true';
+      if(!setOnce) return null;
+      const saved = localStorage.getItem(PASSWORD_KEY);
+      return saved && saved.trim() ? saved : null;
+    }
+
+    function setPassword(){
+      const alreadySet = localStorage.getItem(PASSWORD_SET_ONCE_KEY) === 'true';
+      if(alreadySet){
+        alert('Password is already set and cannot be changed.');
+        return;
+      }
+      const pwd = prompt('Set new password (only once):','');
+      if(pwd === null) return;
+      const trimmed = pwd.trim();
+      if(!trimmed){
+        alert('Password cannot be empty.');
+        return;
+      }
+      localStorage.setItem(PASSWORD_KEY, trimmed);
+      localStorage.setItem(PASSWORD_SET_ONCE_KEY, 'true');
+      alert('Password set successfully. It cannot be changed again.');
+      lockAllSecure();
+    }
+
+    function forgetPassword(){
+      lockAllSecure();
+      alert(
+        'Warning: Password reset is disabled for security.\n' +
+        'You cannot access hidden folders or personal notes using "Forgot password".'
+      );
+    }
+
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    const pages = {
+      home: document.getElementById('page-home'),
+      note: document.getElementById('page-note'),
+      items: document.getElementById('page-items'),
+      services: document.getElementById('page-services'),
+      contact: document.getElementById('page-contact')
+    };
+
+    function showPage(name){
+      lockAllSecure();
+      Object.keys(pages).forEach(key=>{
+        pages[key].classList.toggle('active', key === name);
+      });
+      document.querySelectorAll('.nav-links a').forEach(a=>{
+        const target = a.getAttribute('data-page');
+        a.classList.toggle('active', target === name);
+      });
+      navLinks.classList.remove('open');
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    document.querySelectorAll('.nav-links a').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const page = a.getAttribute('data-page');
+        if(page) showPage(page);
+      });
+    });
+
+    function savePersonal(e){
+      e.preventDefault();
+      const data = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        bio: document.getElementById('bio').value
+      };
+      localStorage.setItem('personal', JSON.stringify(data));
+      alert('Personal info saved safely in this browser.');
+    }
+
+    function loadPersonal(){
+      const data = JSON.parse(localStorage.getItem('personal') || 'null');
+      if(!data) return;
+      document.getElementById('name').value = data.name || '';
+      document.getElementById('email').value = data.email || '';
+      document.getElementById('bio').value   = data.bio || '';
+    }
+
+    function loadSample(){
+      document.getElementById('name').value   = 'Demo User';
+      document.getElementById('email').value  = 'demo@example.com';
+      document.getElementById('bio').value    = 'I like building cool web projects.';
+    }
+
+    let itemsFolderOpen      = false;
+    let itemsUnlocked        = false;
+    let contactsUnlocked     = false;
+    let personalNotesUnlocked= false;
+
+    function lockItems(){
+      itemsUnlocked   = false;
+      itemsFolderOpen = false;
+      document.getElementById('itemsFolderContent').style.display = 'none';
+      document.getElementById('unlockItemsBtn').textContent = '🔒 Unlock items';
+    }
+
+    function lockContacts(){
+      contactsUnlocked = false;
+      const list = document.getElementById('contactList');
+      if(list){
+        list.style.display = 'none';
+        list.textContent = 'No contacts saved yet.';
+      }
+      document.getElementById('unlockBtn').textContent = '🔒 Unlock contacts';
+    }
+
+    function lockPersonalNotes(){
+      personalNotesUnlocked = false;
+      const sel = document.getElementById('noteTypeSelect');
+      if(sel && sel.value === 'personal'){
+        sel.value = 'daily';
+      }
+      renderNotes();
+    }
+
+    function lockAllSecure(){
+      lockItems();
+      lockContacts();
+      lockPersonalNotes();
+    }
+
+    function toggleItemsFolder(){
+      if(!itemsUnlocked){
+        alert('Unlock items first.');
+        return;
+      }
+      itemsFolderOpen = !itemsFolderOpen;
+      document.getElementById('itemsFolderContent').style.display =
+        itemsFolderOpen ? 'block' : 'none';
+    }
+
+    function unlockItems(){
+      lockContacts();
+
+      const pwdStored = getPassword();
+      if(!pwdStored){
+        alert('Password is not set yet. Owner must set the password from Personal info.');
+        return;
+      }
+
+      const pwd = prompt('Enter password to view items:');
+      if(pwd === null) return;
+      if(pwd === pwdStored){
+        itemsUnlocked   = true;
+        itemsFolderOpen = true;
+        document.getElementById('itemsFolderContent').style.display = 'block';
+        document.getElementById('unlockItemsBtn').textContent = '🔓 Items unlocked';
+      } else {
+        alert('Wrong password.');
+      }
+    }
+
+    function goToMyItems(){
+      showPage('items');
+    }
+
+    function handleImage(e){
+      const f = e.target.files[0];
+      if(!f) return;
+      const reader = new FileReader();
+      reader.onload = function(ev){
+        const dataURL = ev.target.result;
+        addCard({type:'image', title:f.name, src:dataURL});
+        goToMyItems();
+      };
+      reader.readAsDataURL(f);
+    }
+
+    function handleDoc(e){
+      const f = e.target.files[0];
+      if(!f) return;
+      let docs = JSON.parse(localStorage.getItem('docs') || '[]');
+      docs.push({name:f.name, size:f.size, uploaded:new Date().toISOString()});
+      localStorage.setItem('docs', JSON.stringify(docs));
+      addCard({type:'doc', title:f.name, src:null});
+      goToMyItems();
+    }
+
+    function addCard(obj){
+      const arr = JSON.parse(localStorage.getItem(ITEMS_KEY) || '[]');
+      arr.unshift(obj);
+      localStorage.setItem(ITEMS_KEY, JSON.stringify(arr));
+      renderCards();
+    }
+
+    function renderCards(){
+      const arr = JSON.parse(localStorage.getItem(ITEMS_KEY) || '[]');
+
+      photosGrid.innerHTML = '';
+      pdfGrid.innerHTML    = '';
+      extraGrid.innerHTML  = '';
+
+      if(!arr.length){
+        photosGrid.innerHTML = '<div class="muted-note">No photos yet.</div>';
+        pdfGrid.innerHTML    = '<div class="muted-note">No PDFs yet.</div>';
+        extraGrid.innerHTML  = '<div class="muted-note">No extra files yet.</div>';
+        return;
+      }
+
+      arr.forEach((c,i)=>{
+        const div = document.createElement('div');
+        div.className = 'card';
+
+        if(c.type === 'image'){
+          const img = document.createElement('img');
+          img.src = c.src;
+          div.appendChild(img);
+        }else if(c.type === 'doc'){
+          const docBox = document.createElement('div');
+          docBox.style.padding = '10px';
+          docBox.style.border = '1px dashed #d1d5db';
+          docBox.style.borderRadius = '8px';
+          docBox.textContent = 'Document: ' + (c.title || 'Untitled');
+          div.appendChild(docBox);
+        }else{
+          const placeholder = document.createElement('div');
+          placeholder.style.height='120px';
+          placeholder.style.background='#eef2ff';
+          placeholder.style.borderRadius='8px';
+          div.appendChild(placeholder);
+        }
+
+        const title = document.createElement('div');
+        title.className = 'title';
+        title.textContent = c.title || 'Untitled';
+        div.appendChild(title);
+
+        const remove = document.createElement('button');
+        remove.className = 'btn';
+        remove.textContent = 'Remove';
+        remove.onclick = ()=>{ removeCard(i); };
+        div.appendChild(remove);
+
+        let targetGrid = extraGrid;
+        const nameLower = (c.title || '').toLowerCase();
+
+        if(c.type === 'image'){
+          targetGrid = photosGrid;
+        } else if(c.type === 'doc' && nameLower.endsWith('.pdf')){
+          targetGrid = pdfGrid;
+        } else {
+          targetGrid = extraGrid;
+        }
+
+        targetGrid.appendChild(div);
+      });
+
+      if(!photosGrid.innerHTML.trim()){
+        photosGrid.innerHTML = '<div class="muted-note">No photos yet.</div>';
+      }
+      if(!pdfGrid.innerHTML.trim()){
+        pdfGrid.innerHTML = '<div class="muted-note">No PDFs yet.</div>';
+      }
+      if(!extraGrid.innerHTML.trim()){
+        extraGrid.innerHTML = '<div class="muted-note">No extra files yet.</div>';
+      }
+    }
+
+    function removeCard(index){
+      const arr = JSON.parse(localStorage.getItem(ITEMS_KEY) || '[]');
+      arr.splice(index,1);
+      localStorage.setItem(ITEMS_KEY, JSON.stringify(arr));
+      renderCards();
+    }
+
+    function addSampleCards(){
+      addCard({
+        type:'image',
+        title:'SamplePhoto1.png',
+        src:'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22120%22%3E%3Crect width=%22200%22 height=%22120%22 fill=%22%23e9f2ff%22/%3E%3Ctext x=%2210%22 y=%2265%22 font-size=%2214%22 fill=%22%23044aa6%22%3ESample+Photo+1%3C/text%3E%3C/svg%3E'
+      });
+      addCard({type:'doc', title:'Resume.pdf', src:null});
+      addCard({type:'doc', title:'Notes.docx', src:null});
+    }
+
+    function clearAll(){
+      if(confirm('Remove all saved items and docs from this browser?')){
+        localStorage.removeItem(ITEMS_KEY);
+        localStorage.removeItem('docs');
+        renderCards();
+      }
+    }
+
+    function doSearch(e){
+      e.preventDefault();
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      const arr = JSON.parse(localStorage.getItem(ITEMS_KEY) || '[]');
+
+      showPage('items');
+      if(!itemsUnlocked){
+        alert('Unlock items first to search.');
+        return;
+      }
+      if(!itemsFolderOpen){
+        itemsFolderOpen = true;
+        document.getElementById('itemsFolderContent').style.display = 'block';
+      }
+
+      if(!q){
+        renderCards();
+        alert('Search cleared. Showing all items in folders.');
+        return;
+      }
+
+      const results = arr.filter(c => (c.title || '').toLowerCase().includes(q));
+      if(!results.length){
+        alert('No results found for "' + q + '".');
+      }else{
+        alert('Found ' + results.length + ' item(s) with "' + q + '". Check your folders.');
+      }
+    }
+
+    function unlockContacts(){
+      lockItems();
+
+      const pwdStored = getPassword();
+      if(!pwdStored){
+        alert('Password is not set yet. Owner must set the password from Personal info.');
+        return;
+      }
+
+      const pwd = prompt('Enter password to view contacts:');
+      if(pwd === null) return;
+      if(pwd === pwdStored){
+        contactsUnlocked = true;
+        const list = document.getElementById('contactList');
+        list.style.display = 'block';
+        document.getElementById('unlockBtn').textContent = '🔓 Contacts unlocked';
+        renderContacts();
+      } else {
+        alert('Wrong password.');
+      }
+    }
+
+    function saveContact(e){
+      e.preventDefault();
+      const name = document.getElementById('contactName').value.trim();
+      const phone = document.getElementById('contactPhone').value.trim();
+      const msg = document.getElementById('contactMsg').value.trim();
+
+      if(!phone){
+        alert('Please enter a phone number.');
+        return;
+      }
+
+      let contacts = JSON.parse(localStorage.getItem(CONTACTS_KEY) || '[]');
+      contacts.push({name, phone, msg, created:new Date().toISOString()});
+      localStorage.setItem(CONTACTS_KEY, JSON.stringify(contacts));
+
+      if(contactsUnlocked){
+        renderContacts();
+      }
+
+      e.target.reset();
+      alert('Contact saved safely (hidden until password is entered).');
+    }
+
+    function renderContacts(){
+      const contacts = JSON.parse(localStorage.getItem(CONTACTS_KEY) || '[]');
+      const box = document.getElementById('contactList');
+      if(!contacts.length){
+        box.textContent = 'No contacts saved yet.';
+        return;
+      }
+      box.innerHTML = contacts.map(c =>
+        `<div style="margin-bottom:6px;">
+          <strong>${c.name || 'No name'}</strong> — ${c.phone}
+          <div class="muted-note">${c.msg || ''}</div>
+        </div>`
+      ).join('');
+    }
+
+    function clearAllContacts(){
+      if(!confirm('Delete all saved contacts from this browser?')) return;
+      localStorage.removeItem(CONTACTS_KEY);
+      if(contactsUnlocked){
+        renderContacts();
+      }
+    }
+
+    function clearContactForm(){
+      document.getElementById('contactForm').reset();
+    }
+
+    function addNewNote(){
+      const select = document.getElementById('noteTypeSelect');
+      const type = select ? select.value : 'daily';
+
+      if(type === 'personal'){
+        const pwdStored = getPassword();
+        if(!pwdStored){
+          alert('Password is not set yet. Set the main password from Personal info to use personal notes.');
+          return;
+        }
+      }
+
+      const title = prompt('Note title:','');
+      if(title === null) return;
+      const content = prompt('Note content:','');
+      if(content === null) return;
+
+      const note = {
+        title: title.trim(),
+        content: content.trim(),
+        created: new Date().toISOString()
+      };
+      const key = type === 'personal' ? PERSONAL_NOTES_KEY : DAILY_NOTES_KEY;
+      let arr = JSON.parse(localStorage.getItem(key) || '[]');
+      arr.unshift(note);
+      localStorage.setItem(key, JSON.stringify(arr));
+      renderNotes();
+    }
+
+    function deleteNote(type, index){
+      const key = type === 'personal' ? PERSONAL_NOTES_KEY : DAILY_NOTES_KEY;
+      let arr = JSON.parse(localStorage.getItem(key) || '[]');
+      arr.splice(index, 1);
+      localStorage.setItem(key, JSON.stringify(arr));
+      renderNotes();
+    }
+
+    function renderNotes(){
+      const listEl = document.getElementById('notesList');
+      if(!listEl) return;
+      const select = document.getElementById('noteTypeSelect');
+      const type = select ? select.value : 'daily';
+      const key = type === 'personal' ? PERSONAL_NOTES_KEY : DAILY_NOTES_KEY;
+      const arr = JSON.parse(localStorage.getItem(key) || '[]');
+
+      if(type === 'personal'){
+        const pwdStored = getPassword();
+        if(!pwdStored){
+          listEl.innerHTML = '<div class="muted-note">Set main password first in Personal info to use personal notes.</div>';
+          return;
+        }
+
+        if(!arr.length){
+          listEl.innerHTML = '<div class="muted-note">No personal notes yet. Click + to add one. Password will be needed next time to view them.</div>';
+          return;
+        }
+
+        if(!personalNotesUnlocked){
+          const pwd = prompt('Enter password to view personal notes:');
+          if(pwd === null || pwd !== pwdStored){
+            listEl.innerHTML = '<div class="muted-note">Personal notes are locked. Wrong or no password.</div>';
+            return;
+          }
+          personalNotesUnlocked = true;
+        }
+      }
+
+      if(!arr.length && type === 'daily'){
+        listEl.innerHTML =
+          '<div class="muted-note">No daily notes yet. Click + to add one.</div>';
+        return;
+      }
+
+      listEl.innerHTML = '';
+      arr.forEach((n, idx) => {
+        const div = document.createElement('div');
+        div.className = 'note-card';
+
+        const safeContent = (n.content || '').replace(/</g, '&lt;');
+
+        div.innerHTML = `
+          <div class="note-title">${n.title || 'Untitled note'}</div>
+          <div class="note-body">${safeContent}</div>
+          <div class="note-meta muted-note">
+            ${n.created ? new Date(n.created).toLocaleString() : ''}
+          </div>
+        `;
+        const delBtn = document.createElement('button');
+        delBtn.className = 'btn';
+        delBtn.textContent = 'Delete';
+        delBtn.onclick = () => deleteNote(type, idx);
+        div.appendChild(delBtn);
+
+        listEl.appendChild(div);
+      });
+    }
+
+    function handleNoteTypeChange(){
+      const select = document.getElementById('noteTypeSelect');
+      const type = select.value;
+      if(type === 'personal'){
+        const pwdStored = getPassword();
+        if(!pwdStored){
+          alert('Password is not set yet. Set the main password from Personal info to use personal notes.');
+          select.value = 'daily';
+          renderNotes();
+          return;
+        }
+        personalNotesUnlocked = false;
+      }
+      renderNotes();
+    }
+
+    (function init(){
+      loadPersonal();
+      renderCards();
+      renderNotes();
+      lockAllSecure();
+      showPage('home');
+
+      const noteTypeSelect = document.getElementById('noteTypeSelect');
+      if(noteTypeSelect){
+        noteTypeSelect.addEventListener('change', handleNoteTypeChange);
+      }
+    })();
+  </script>
+</body>
+</html>

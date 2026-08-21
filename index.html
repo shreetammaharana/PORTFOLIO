@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shreetam Maharana | Portfolio</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css"/>
+
+    <!-- Font Awesome for social icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+</head>
+<body>
+    <!-- Floating geometric background -->
+    <div class="bg-orbit bg-orbit-one"></div>
+    <div class="bg-orbit bg-orbit-two"></div>
+    <div class="bg-orbit bg-orbit-three"></div>
+
+    <!-- Navigation -->
+    <header class="main-header">
+        <div class="logo">SM</div>
+        <nav class="nav">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About</a>
+             <a href="#introduction" class="nav-link">Introduction</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#education" class="nav-link">Education</a>
+            <a href="tel:+918596006541" class="nav-link">Contact</a>
+
+            <!-- Resume Download -->
+            <a
+                href="SHREETAM-RESUME-FRESHER.pdf"
+                class="nav-link resume-link"
+                download
+            >
+                Download Resume
+            </a>
+        </nav>
+       <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation">
+  <span class="menu-icon">☰</span>
+  <span class="close-icon">✖</span>
+</button>
+    </header>
+
+    <!-- HERO / HOME -->
+    <section id="home" class="section hero">
+        <div class="hero-container">
+            <div class="hero-left">
+                <div class="hero-card">
+                    <p class="hello-badge">Hello, I’m</p>
+                    <h1 class="hero-name">
+                        <span class="name-first">Shreetam</span><br/>
+                        <span class="name-last">Maharana</span>
+                        </h1>
+                    <p class="hero-role">
+                        FULL STACK JAVA DEVELOPER 
+                    </p>
+                    <p class="hero-tagline">
+                        Java Full Stack Developer | Spring Boot | REST APIs | Microservices | React.js | MySQL
+                    </p>
+                    <div class="hero-actions">
+                        <a href="tel:+918596006541"class="btn primary">Contact Me</a>
+                        <a href="#projects" class="btn ghost">View My Work</a>
+                    </div>
+
+                    <!-- Social icons row at bottom of card -->
+                    <div class="hero-social">
+                        <a
+                            href="https://github.com/YOUR_GITHUB_LINK"
+                            class="social-link"
+                            target="_blank"
+                            aria-label="GitHub"
+                        >
+                            <i class="fab fa-github"></i>
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/in/YOUR_LINKEDIN_LINK"
+                            class="social-link" 
+                            target="_blank"
+                            aria-label="LinkedIn"
+                        >
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+
+                        <a
+                            href="mailto:shreetammaharana2002@gmail.com"
+                            class="social-link"
+                            aria-label="Email"
+                        >
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <!-- Change profile.png to your own image name if needed -->
+                <img
+                    src="PHOTO.png"
+                    alt="Shreetam Maharana"
+                    class="hero-image"
+                />
+            </div>
+        </div>
+
+        <div class="scroll-hint">
+            <span>Scroll to explore</span>
+            <div class="scroll-wheel"></div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section about-section">
+        <div class="section-title-wrap">
+            <h2 class="section-title">About Me</h2>
+            <span class="section-tag">Who I Am</span>
+        </div>
+
+        <div class="about-container">
+            <div class="about-text">
+                <p>
+                    I am a self-motivated and highly passionate Computer Science graduate
+                    with a deep interest in backend and full-stack development. I love solving
+                    real-world problems using clean, maintainable, and efficient code.
+                </p>
+               <br>
+               <br>
+               <br>
+               <br>
+                <p>
+                    My expertise lies in building RESTful APIs, microservices, and
+                    database-driven applications using <strong>Java, Spring Boot, and MySQL</strong>.
+                    I’m always eager to learn new technologies and contribute to innovative
+                    software projects.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <div class="about-highlight">
+                    <span class="emoji">🚀</span>
+                    <h3>MISSION</h3>
+                    
+                    <p>
+                        To build scalable and modern web applications that make
+                        a meaningful impact.
+                    </p>
+                </div>
+              
+                <div class="about-highlight">
+                    <span class="emoji">💡</span>
+                    <h3>VISION</h3>
+                    <p>
+                        To grow as a full-stack developer while contributing to
+                        creative and technical excellence.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- INTRODUCTION -->
+
+  <section id="introduction" class="section intro-section">
+  <div class="intro-container">
+    <div class="section-title-wrap">
+      <h2 class="section-title">Introduction</h2>
+      <span class="section-tag">My Video</span>
+    </div>
+
+    <p class="intro-text">
+      In this video, I introduce myself, talk about my background,
+      technical skills, and career goals as a Full Stack Java Developer.
+    </p>
+
+    <div class="intro-video-wrapper">
+      <iframe
+        src=""
+        title="Introduction Video"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+    <!-- SKILLS (cards style) -->
+    <section id="skills" class="section">
+        <div class="section-title-wrap">
+            <h2 class="section-title">
+                Featured <span class="accent-text">Skills</span>
+            </h2>
+            <span class="section-tag">what i use</span>
+        </div>
+        <p class="section-intro">
+            Core technical skills I work with in backend development,
+            full-stack applications and problem solving.
+        </p>
+
+        <div class="skills-grid">
+            <!-- Skill card 1 -->
+            <article class="skill-card">
+                <div class="skill-top skill-top-gold">
+                    <span class="skill-label">Backend</span>
+                </div>
+                <div class="skill-body">
+                    <h3 class="skill-title">Java & Spring Ecosystem</h3>
+                    <p class="skill-text">
+                        Building secure and scalable backend services and REST APIs.
+                    </p>
+                    <div class="chip-row">
+                        <span class="chip">Core Java</span>
+                        <span class="chip">Java 8</span>
+                        <span class="chip">Spring Boot</span>
+                        <span class="chip">Spring MVC</span>
+                        <span class="chip">Spring Security</span>
+                        <span class="chip">Microservices</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Skill card 2 -->
+            <article class="skill-card">
+                <div class="skill-top skill-top-blue">
+                    <span class="skill-label">Databases</span>
+                </div>
+                <div class="skill-body">
+                    <h3 class="skill-title">Database & ORM</h3>
+                    <p class="skill-text">
+                        Designing schemas, writing queries and mapping objects to tables.
+                    </p>
+                    <div class="chip-row">
+                        <span class="chip">MySQL</span>
+                        <span class="chip">MongoDB</span>
+                        <span class="chip">Hibernate</span>
+                        <span class="chip">JPA</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Skill card 3 -->
+            <article class="skill-card">
+                <div class="skill-top skill-top-violet">
+                    <span class="skill-label">Full Stack</span>
+                </div>
+                <div class="skill-body">
+                    <h3 class="skill-title">Web & Tools</h3>
+                    <p class="skill-text">
+                        Creating responsive interfaces and using tools for development.
+                    </p>
+                    <div class="chip-row">
+                        <span class="chip">HTML</span>
+                        <span class="chip">CSS</span>
+                        <span class="chip">JavaScript</span>
+                        <span class="chip">Python</span>
+                        <span class="chip">Node.js</span>
+                        <span class="chip">Servlet</span>
+                        <span class="chip">Maven</span>
+                        <span class="chip">Git / GitHub</span>
+                        <span class="chip">Postman</span>
+                        <span class="chip">JUnit</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Skill card 4 -->
+            <article class="skill-card">
+                <div class="skill-top skill-top-soft">
+                    <span class="skill-label">Soft Skills</span>
+                </div>
+                <div class="skill-body">
+                    <h3 class="skill-title">Ways I Work</h3>
+                    <p class="skill-text">
+                        How I approach teamwork, learning and problem solving.
+                    </p>
+                    <div class="chip-row">
+                        <span class="chip">Problem Solving</span>
+                        <span class="chip">Team Player</span>
+                        <span class="chip">Quick Learner</span>
+                        <span class="chip">Self-Motivated</span>
+                        <span class="chip">Communication</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+        <div class="section-title-wrap">
+            <h2 class="section-title">
+                Featured <span class="accent-text">Projects</span>
+            </h2>
+            <span class="section-tag">what i built</span>
+        </div>
+
+        <p class="section-intro">
+            A selection of projects showcasing my skills in full-stack development,
+            data analysis and application design.
+        </p>
+
+        <div class="projects-grid">
+
+              <!-- Project 1-->
+
+            <article class="project-card">
+                <div class="project-top project-top-blue">
+                    <span class="project-label">Web Application</span>
+                    <span class="project-icon">📊</span>
+                </div>
+                <div class="project-body">
+                    <h3 class="project-title">Weather Report Application</h3>
+                    <br>
+                    <p class="project-text">
+                       A lightweight and interactive weather application that provides real-time weather updates for cities worldwide using a public Weather API. The application delivers accurate information such as temperature, humidity, wind speed, and weather conditions through a clean, responsive, and user-friendly interface.
+                    </p>
+                    <ul class="project-list">
+                          <h3 class="project-menu">Key Features & Responsibilities:</h3>
+                        <br>
+                        <li>Developed a responsive user interface using HTML, CSS, and JavaScript.</li>
+                        <li>Integrated a Public Weather API to fetch live weather data based on city names.</li>
+                        <li>Displayed real-time weather details including temperature, humidity, wind speed, and weather conditions.</li>
+                        <li>Implemented an instant city search feature with dynamic API responses.</li>
+                        <li>Designed a clean, minimal, and mobile-friendly interface for an enhanced user experience.</li>
+                    </ul>
+                    <br>
+                    <br>
+                    <a href="https://shreetammaharana.github.io/WEATHER/" class="project-link">View Live Project ↗</a>
+                    <br>
+                    <a href="mailto:shreetammaharana2002@gmail.com" class="project-link">Discuss this project ↗</a>
+                </div>
+            </article>
+
+ <!-- Project 2 -->
+            <article class="project-card">
+                <div class="project-top project-top-gold">
+                    <span class="project-label">Web Application</span>
+                    <span class="project-icon">↑</span>
+                </div>
+                <div class="project-body">
+                    <h3 class="project-title">
+                       CalcX – Smart Calculator
+                    </h3>
+                    <br>
+                    <p class="project-text">
+                      Developed a responsive and interactive calculator web application using HTML, CSS, and JavaScript, featuring real-time calculations, calculation history, memory operations, keyboard support, percentage and backspace functions, and Dark/Light mode. Used LocalStorage to save calculation history and theme preferences, ensuring a smooth and persistent user experience across desktop and mobile devices.
+                    </p>
+                    <ul class="project-list">
+                    <h3 class="project-menu">Key Features & Responsibilities:</h3>
+                        <br>
+                        <li>Real-time arithmetic calculations.</li>
+                        <li>Calculation history popup with clear option.</li>
+                        <li>Memory operations.</li>
+                        <li>Responsive design for desktop and mobile.</li>
+                        <li>Keyboard support</li>
+                        <li>Dark/Light mode</li>
+                    </ul>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <a href="https://shreetammaharana.github.io/Calculator/" class="project-link">View Live Project ↗</a>
+                    <br>
+                    <a href="mailto:shreetammaharana2002@gmail.com" class="project-link">Discuss this project ↗</a>
+                   
+                </div>
+            </article>
+
+            <!-- Project 3-->
+            <article class="project-card">
+                <div class="project-top project-top-gold">
+                    <span class="project-label">Full Stack Web App</span>
+                    <span class="project-icon">↑</span>
+                </div>
+                <div class="project-body">
+                    <h3 class="project-title">
+                        Hotel Reservation & Management System
+                    </h3>
+                    <br>
+                    <p class="project-text">
+                       A complete hotel booking platform that enables users to search available rooms, make online reservations, securely authenticate their accounts, and efficiently manage bookings. 
+                    </p>
+                    <ul class="project-list">
+                    <h3 class="project-menu">Key Features & Responsibilities:</h3>
+                        <br>
+                        <li>Developed the backend using Java, Spring Boot, and Microservices Architecture.</li>
+                        <li>Designed and implemented secure RESTful APIs with Spring Security and JWT Authentication.</li>
+                        <li>Built room search, online booking, reservation, and cancellation functionalities.</li>
+                        <li>Implemented user registration, login, profile management, and role-based access control.</li>
+                        <li>Performed API testing, exception handling, and input validation to ensure application reliability.</li>
+                    </ul>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <a href="mailto:shreetammaharana2002@gmail.com" class="project-link">Discuss this project ↗</a>
+                   
+                </div>
+            </article>
+
+            <!-- Project 4 -->
+            <article class="project-card">
+                <div class="project-top project-top-violet">
+                    <span class="project-label">Full Stack development App</span>
+                    <span class="project-icon">🧑‍💻</span>
+                </div>
+                <div class="project-body">
+                    <h3 class="project-title">Intelligent Healthcare Scheduling Platform - MediSyncPro</h3>
+                    <br>
+                    <p class="project-text">
+                       A smart healthcare management platform designed to simplify appointment scheduling, patient record management, and doctor availability through secure and scalable backend services.
+                    </p>
+                    <ul class="project-list">
+                        <h3 class="project-menu">Key Features & Responsibilities:</h3>
+                        <br>
+                        <li>Developed scalable backend services using Java, Spring Boot, and Microservices.</li>
+                        <li>Built secure RESTful APIs with Spring Security and JWT Authentication.</li>
+                        <li>Implemented doctor management, patient registration, and appointment scheduling modules.</li>
+                        <li>Developed appointment booking, rescheduling, cancellation, and notification workflows.</li>
+                        <li>Integrated Hibernate (JPA) with MySQL for efficient data persistence and CRUD operations.</li>
+                    </ul>
+                    <br>
+                    <br>
+                    <br>
+                   <a href="mailto:shreetammaharana2002@gmail.com" class="project-link">Discuss this project ↗</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE (cards style) -->
+
+    <section id="experience" class="section">
+        <div class="section-title-wrap">
+            <h2 class="section-title">
+                Professional <span class="accent-text">Experience</span>
+            </h2>
+            <span class="section-tag">internships & training</span>
+        </div>
+        <p class="section-intro">
+            Hands-on experience from internships where I worked on full-stack
+            applications and backend services.
+        </p>
+
+        <div class="experience-grid">
+
+              <!-- Experience card 1 -->
+
+            <article class="experience-card">
+                <div class="experience-top experience-top-blue">
+                    <span class="experience-label">Internship</span>
+                    <span class="experience-role">
+                        Web Dev
+                    </span>
+                </div>
+                <div class="experience-body">
+                    <h3 class="experience-title">Full Stack Web Development Intern</h3>
+                    <p class="experience-subtitle">
+                       PW SKILLS
+                    </p>
+                    <ul class="experience-list">
+                        <li>
+                           Successfully completed a Web Development cource.
+                        </li>
+                        <li>
+                            Learned HTML5, CSS3, and JavaScript for front-end development.
+                        </li>
+                        <li>
+                            Built responsive and mobile-friendly web pages using Bootstrap.
+                        </li>
+                        <li>
+                            Developed interactive user interface with React.js.
+                        </li>
+                        <li>
+                           Learned back-end development using Node.js and Express.js.
+                        </li>
+                        <li>
+                            Used Git and GitHub for version control and collaboration.
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- Experience card 2 -->
+
+            <article class="experience-card">
+                <div class="experience-top experience-top-gold">
+                    <span class="experience-label">Internship</span>
+                    <span class="experience-role">Full Stack Dev</span>
+                </div>
+                <div class="experience-body">
+                    <h3 class="experience-title">
+                        Full Stack Development – Training Cum Internship
+                    </h3>
+                    <p class="experience-subtitle">
+                        Pankaj Sir Academy · Bengaluru, Karnataka
+                    </p>
+                    <br>
+                    <ul class="experience-list">
+                        <li>Completed internship in full stack web development.</li>
+                        <li>
+                            Worked on tasks using Java, Spring Boot, MySQL, HTML and CSS.
+                        </li>
+                        <li>
+                            Built both frontend and backend parts of web applications.
+                        </li>
+                        <li>Recognised for hard work, dedication and quick learning.</li>
+                    </ul>
+                    <br>
+                     <a href="FullStackDevelopment.jpg" class="project-link">View Certificate ↗</a>
+                </div>
+            </article>
+
+            <!-- Experience card 3-->
+
+            <article class="experience-card">
+                <div class="experience-top experience-top-blue">
+                    <span class="experience-label">Internship</span>
+                    <span class="experience-role">
+                        Full Stack Dev
+                    </span>
+                </div>
+                <div class="experience-body">
+                    <h3 class="experience-title">Full Stack Development With Java & Python Intern</h3>
+                    <p class="experience-subtitle">
+                        KodNest Technologies · Bengaluru, Karnataka
+                    </p>
+                    <br>
+                    <ul class="experience-list">
+                        <li>
+                            Focused on full stack development using Java and Python.
+                        </li>
+                        <li>
+                            Developed and tested backend APIs with Spring Boot and Flask.
+                        </li>
+                        <li>
+                            Built responsive UIs with HTML, CSS and JavaScript.
+                        </li>
+                        <li>
+                            Used MySQL for data storage and REST principles for APIs.
+                        </li>
+                        <li>
+                            Improved debugging, version control and clean code practices.
+                        </li>
+                    </ul>
+                   <a href="KODI7IEO8-shreetam maharana.pdf" class="project-link">View Certificate ↗</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- EDUCATION (cards style) -->
+
+    <section id="education" class="section">
+        <div class="section-title-wrap">
+            <h2 class="section-title">
+                Academic <span class="accent-text">Education</span>
+            </h2>
+            <span class="section-tag">my journey</span>
+        </div>
+        <p class="section-intro">
+            My academic background that built my foundation in Computer Science
+            and problem solving.
+        </p>
+
+        <div class="education-grid">
+            <!-- Degree 1 -->
+
+            <article class="education-card">
+                <div class="education-top education-top-gold">
+                    <span class="education-label">Bachelor's Degree</span>
+                    <span class="education-year">SCIENCE</span>
+                </div>
+                <div class="education-body">
+                    <h3 class="education-title">B.Tech in Computer Science</h3>
+                    <p class="education-inst">
+                        Vignan Institute of Technology and Management, Berhampur
+                    </p>
+                    <br>
+                    <p>I completed my B.Tech in Computer Science Engineering from Vignan Institute of Technology and Management(VITAM), Berhampur. 
+                     <br>During my studies, I learned programming, web development, databases, and software engineering.
+                        This journey strengthened my technical skills and prepared me for a career in the IT Industry.
+                    </p>
+                    <p class="education-meta">CGPA : 8.33</p>
+                </div>
+            </article>
+
+            <!-- Degree 2 -->
+
+            <article class="education-card">
+                <div class="education-top education-top-blue">
+                    <span class="education-label">Higher Secondary</span>
+                    <span class="education-year">Science</span>
+                </div>
+                <div class="education-body">
+                    <h3 class="education-title">12th (Science)</h3>
+                    <p class="education-inst">
+                        Samrat HS School (M.I.S.T), Berhampur 
+                    </p>
+                    <br>
+                    <p>I completed my Higher Secondary from Samrat Higher Secondary School(M.I.S.T), Berhampur.
+                    <br> During my studies, I build a strong acedemic foundation, improved my learning skills, and prepared myself for higher education.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Degree 3 -->
+
+            <article class="education-card">
+                <div class="education-top education-top-violet">
+                    <span class="education-label">Secondary</span>
+                    <span class="education-year">10th</span>
+                </div>
+                <div class="education-body">
+                    <h3 class="education-title">Matriculation</h3>
+                    <p class="education-inst">
+                        Kendriya Vidyalaya, Berhampur
+                    </p>
+                    <br>
+                    <p>I completed my Class 10th from Kendriya Vidyalaya, Ambapua,Berhampur.
+                        <br>During my school years, I built a strong academy foundation and developed discipline, confidence, and essential learning skills.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- CONTACT – crazy modern panel -->
+
+    <section id="contact" class="section">
+        <div class="section-title-wrap">
+            <h2 class="section-title">
+                Let’s <span class="accent-text">Connect</span>
+            </h2>
+            <span class="section-tag">contact</span>
+        </div>
+
+        <div class="contact-shell">
+            <!-- angled neon stripe -->
+            <div class="contact-stripe"></div>
+
+            <div class="contact-main">
+                <h3 class="contact-heading">Ready to build something cool?</h3>
+                <p class="contact-text">
+                    I’m actively looking for roles as a
+                    <strong>Java / Spring Boot / Full Stack Developer</strong>.
+                    If you have an opportunity, project idea, or just want to talk tech,
+                    drop me a message.
+                </p>
+
+                <div class="contact-tags">
+                    <span class="contact-tag">Actively looking</span>
+                    <span class="contact-tag">Open to relocation</span>
+                    <span class="contact-tag">Quick learner</span>
+                </div>
+
+                <a
+                    href="mailto:shreetammaharana2002@gmail.com"
+                    class="btn contact-cta"
+                >
+                    ✉️ Send Me an Email
+                </a> 
+                <br>
+                <br>
+                <a
+                    href="https://zoom.us/j/590 275 1210"
+                    class="btn contact-cta"
+                >
+                    ✉️ Meeting Request
+                </a>
+
+            </div>
+
+            <div class="contact-side">
+                <div class="contact-row">
+                    <span class="contact-icon">📧</span>
+                    <div class="contact-info">
+                        <span class="contact-label">Email</span>
+                        <a
+                            href="mailto:shreetammaharana2002@gmail.com"
+                            class="contact-value"
+                        >
+                            shreetammaharana2002@gmail.com
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-row">
+                    <span class="contact-icon">📱</span>
+                    <div class="contact-info">
+                        <span class="contact-label">Phone</span>
+                        <a href="tel:+918596006541" class="contact-value">
+                            +91 85960 06541
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-row">
+                    <span class="contact-icon">📍</span>
+                    <div class="contact-info">
+                        <span class="contact-label">Location</span>
+                        <span class="contact-value">Bengaluru, Karnataka</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <span>© <span id="year"></span> SHREETAM MAHARANA</span>
+            <span>Built with ❤️ using HTML, CSS</span>
+        </footer>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
